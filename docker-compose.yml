@@ -11,7 +11,7 @@ db:
 web:
   image: php:5.5-apache
   volumes: 
-    - ./data:/data
+    - ./:/data
     - ./conf/www.conf:/etc/apache2/sites-enabled/www.conf
     - ./conf/php-override.ini:/usr/local/etc/php/conf.d/php.ini
   ports:
