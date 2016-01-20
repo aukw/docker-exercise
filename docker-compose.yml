@@ -1,0 +1,31 @@
+db:  
+  image: mysql:5.6
+  volumes:
+    - ./mariadb:/var/lib/mysql
+  ports:
+    - "3306:3306"
+  privileged: true
+  environment:
+    MYSQL_ROOT_PASSWORD: 123456
+
+web:
+  image: php:5.5-apache
+  volumes: 
+    - ./data:/data
+    - ./conf/www.conf:/etc/apache2/sites-enabled/www.conf
+    - ./conf/php-override.ini:/usr/local/etc/php/conf.d/php.ini
+  ports:
+    - 80:80
+  links:
+    - db
+
+php:
+  image: php:5.5-cli
+  volumes:
+    - ./:/data
+    - ./conf/php-override.ini:/usr/local/etc/php/php.ini
+  links: 
+    - db
+  
+
+
