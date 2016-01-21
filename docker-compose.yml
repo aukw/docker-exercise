@@ -9,7 +9,7 @@ db:
     MYSQL_ROOT_PASSWORD: 123456
 
 web:
-  image: php:5.5-apache
+  build: .
   volumes: 
     - ./:/data
     - ./conf/www.conf:/etc/apache2/sites-enabled/www.conf
@@ -20,7 +20,7 @@ web:
     - db
 
 php:
-  image: php:5.5-cli
+  image: ganiutomo/docker-php-laravel:5.5-cli
   volumes:
     - ./:/data
     - ./conf/php-override.ini:/usr/local/etc/php/php.ini
